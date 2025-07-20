@@ -118,7 +118,7 @@ export default function Home() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-4xl">
+    <div className="container mx-auto px-3">
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold mb-2">Community Feed</h1>
