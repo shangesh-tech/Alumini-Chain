@@ -12,7 +12,7 @@ import {
   ChevronDown,
   Rocket
 } from 'lucide-react';
-import { useUIStore } from '@/stores/ui-store'
+import { useUIStore } from '@/store/ui-store'
 
 export const SIDENAV_ITEMS = [
   {

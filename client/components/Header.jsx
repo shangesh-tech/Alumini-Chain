@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { Menu, User, LogOut, Settings} from 'lucide-react'
-import { useUIStore } from '@/lib/stores/ui'
+import { useUIStore } from '@/store/ui-store'
 
 const Header = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false)
