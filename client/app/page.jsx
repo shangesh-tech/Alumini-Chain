@@ -145,17 +145,13 @@ export default function Home() {
               />
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-2">
-                  <button className="flex items-center px-3 py-2 text-sm text-zinc-300 hover:text-white hover:bg-zinc-700/50 rounded-lg transition-colors">
+                  <button className="flex items-center px-1 md:px-3 py-2 text-sm text-zinc-300 hover:text-white hover:bg-zinc-700/50 rounded-lg transition-colors">
                     <Image className="w-4 h-4 mr-2" />
                     Photo
                   </button>
-                  <button className="flex items-center px-3 py-2 text-sm text-zinc-300 hover:text-white hover:bg-zinc-700/50 rounded-lg transition-colors">
+                  <button className="flex items-center px-1 md:px-3 py-2 text-sm text-zinc-300 hover:text-white hover:bg-zinc-700/50 rounded-lg transition-colors">
                     <Video className="w-4 h-4 mr-2" />
                     Video
-                  </button>
-                  <button className="flex items-center px-3 py-2 text-sm text-zinc-300 hover:text-white hover:bg-zinc-700/50 rounded-lg transition-colors">
-                    <Link className="w-4 h-4 mr-2" />
-                    Link
                   </button>
                 </div>
                 <button 
