@@ -22,8 +22,8 @@ export default function NotFound() {
 
         {/* Text Content */}
         <div className="space-y-2">
-          <h1 className="text-3xl font-bold text-white">Page Not Found</h1>
-          <p className="text-zinc-400 max-w-md">
+          <h1 className="text-3xl font-bold text-black">Page Not Found</h1>
+          <p className="text-gray-500 max-w-md">
             Oops! The page you're looking for seems to have wandered off into the blockchain...
           </p>
         </div>
@@ -39,7 +39,7 @@ export default function NotFound() {
           </button>
           <button
             onClick={() => router.back()}
-            className="flex items-center justify-center gap-2 px-6 py-3 border border-zinc-700 text-zinc-300 rounded-lg hover:bg-zinc-800 hover:text-white transition-colors"
+            className="flex items-center justify-center gap-2 px-6 py-3 border border-gray-300 text-gray-600 rounded-lg hover:bg-gray-100 hover:text-black transition-colors"
           >
             <ArrowLeft size={20} />
             Go Back

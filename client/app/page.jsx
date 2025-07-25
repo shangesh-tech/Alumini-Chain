@@ -122,11 +122,11 @@ export default function Home() {
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold mb-2">Community Feed</h1>
-        <p className="text-zinc-500">Stay updated with your network</p>
+        <p className="text-gray-500">Stay updated with your network</p>
       </div>
 
       {/* Create Post */}
-      <div className="bg-zinc-800/30 backdrop-blur-sm rounded-lg border border-zinc-700/50 shadow-lg mb-8">
+      <div className="bg-white/80 backdrop-blur-sm rounded-lg border border-gray-200 shadow-lg mb-8">
         <div className="p-6">
           <div className="flex items-start space-x-4">
             <div className="w-12 h-12 rounded-full overflow-hidden">
@@ -141,15 +141,15 @@ export default function Home() {
                 placeholder="What's on your mind?"
                 value={newPost}
                 onChange={(e) => setNewPost(e.target.value)}
-                className="w-full min-h-[100px] resize-none bg-zinc-800/50 rounded-lg border border-zinc-700/50 p-3 text-white placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-purple-500/50"
+                className="w-full min-h-[100px] resize-none bg-gray-50 rounded-lg border border-gray-200 p-3 text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500/50"
               />
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-2">
-                  <button className="flex items-center px-1 md:px-3 py-2 text-sm text-zinc-300 hover:text-white hover:bg-zinc-700/50 rounded-lg transition-colors">
+                  <button className="flex items-center px-1 md:px-3 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-100 rounded-lg transition-colors">
                     <Image className="w-4 h-4 mr-2" />
                     Photo
                   </button>
-                  <button className="flex items-center px-1 md:px-3 py-2 text-sm text-zinc-300 hover:text-white hover:bg-zinc-700/50 rounded-lg transition-colors">
+                  <button className="flex items-center px-1 md:px-3 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-100 rounded-lg transition-colors">
                     <Video className="w-4 h-4 mr-2" />
                     Video
                   </button>
@@ -158,7 +158,7 @@ export default function Home() {
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors
                     ${newPost.trim() 
                       ? 'bg-purple-600 hover:bg-purple-700 text-white' 
-                      : 'bg-zinc-700/50 text-zinc-400 cursor-not-allowed'}`}
+                      : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`}
                   disabled={!newPost.trim()}
                 >
                   Post
@@ -172,7 +172,7 @@ export default function Home() {
       {/* Feed Posts */}
       <div className="space-y-6">
         {feedPosts.map((post) => (
-          <div key={post.id} className="bg-zinc-800/30 backdrop-blur-sm rounded-lg border border-zinc-700/50 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+          <div key={post.id} className="bg-white/80 backdrop-blur-sm rounded-lg border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
             <div className="p-6">
               <div className="flex items-start justify-between">
                 <div 
@@ -184,23 +184,23 @@ export default function Home() {
                   </div>
                   <div>
                     <h3 className="font-semibold hover:text-purple-400 transition-colors">{post.author}</h3>
-                    <p className="text-sm text-zinc-400">{post.title} at {post.company}</p>
-                    <p className="text-xs text-zinc-500">{post.timestamp}</p>
+                    <p className="text-sm text-gray-600">{post.title} at {post.company}</p>
+                    <p className="text-xs text-gray-500">{post.timestamp}</p>
                   </div>
                 </div>
-                <button className="p-2 hover:bg-zinc-700/50 rounded-lg transition-colors">
-                  <MoreHorizontal className="w-4 h-4 text-zinc-400" />
+                <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                  <MoreHorizontal className="w-4 h-4 text-gray-500" />
                 </button>
               </div>
               
               <div className="mt-4 space-y-4">
                 <div 
-                  className="whitespace-pre-wrap cursor-pointer hover:text-zinc-300 transition-colors"
+                  className="whitespace-pre-wrap cursor-pointer hover:text-gray-700 transition-colors"
                   onClick={() => handlePostClick(post)}
                 >
                   {post.content.length > 200 ? `${post.content.substring(0, 200)}... ` : post.content}
                   {post.content.length > 200 && (
-                    <button className="text-purple-400 hover:text-purple-300 font-medium">
+                    <button className="text-purple-600 hover:text-purple-500 font-medium">
                       Read more
                     </button>
                   )}
@@ -220,21 +220,21 @@ export default function Home() {
                   {post.tags.map((tag, index) => (
                     <span 
                       key={index} 
-                      className="px-2 py-1 text-xs rounded-full border border-zinc-700 text-zinc-300 hover:border-purple-500 transition-colors"
+                      className="px-2 py-1 text-xs rounded-full border border-gray-300 text-gray-600 hover:border-purple-500 transition-colors"
                     >
                       #{tag}
                     </span>
                   ))}
                 </div>
                 
-                <div className="flex items-center justify-between pt-4 border-t border-zinc-700/40">
+                <div className="flex items-center justify-between pt-4 border-t border-gray-200">
                   <div className="flex items-center space-x-6">
                     <button 
                       onClick={() => handleLike(post.id)}
                       className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-colors
                         ${post.isLiked 
-                          ? 'text-red-500 hover:bg-red-500/10' 
-                          : 'text-zinc-400 hover:text-white hover:bg-zinc-700/50'}`}
+                          ? 'text-red-500 hover:bg-red-100' 
+                          : 'text-gray-500 hover:text-black hover:bg-gray-100'}`}
                     >
                       <Heart className={`w-4 h-4 ${post.isLiked ? "fill-current" : ""}`} />
                       <span>{post.likes}</span>
@@ -242,7 +242,7 @@ export default function Home() {
                     
                     <button 
                       onClick={() => handlePostClick(post)}
-                      className="flex items-center space-x-2 px-3 py-2 text-zinc-400 hover:text-white hover:bg-zinc-700/50 rounded-lg transition-colors"
+                      className="flex items-center space-x-2 px-3 py-2 text-gray-500 hover:text-black hover:bg-gray-100 rounded-lg transition-colors"
                     >
                       <MessageCircle className="w-4 h-4" />
                       <span>{post.comments}</span>
@@ -250,7 +250,7 @@ export default function Home() {
                     
                     <button 
                       onClick={() => handleShare(post.id)}
-                      className="flex items-center space-x-2 px-3 py-2 text-zinc-400 hover:text-white hover:bg-zinc-700/50 rounded-lg transition-colors"
+                      className="flex items-center space-x-2 px-3 py-2 text-gray-500 hover:text-black hover:bg-gray-100 rounded-lg transition-colors"
                     >
                       <Share2 className="w-4 h-4" />
                       <span>{post.shares}</span>
@@ -261,8 +261,8 @@ export default function Home() {
                     onClick={() => handleBookmark(post.id)}
                     className={`p-2 rounded-lg transition-colors
                       ${post.isBookmarked 
-                        ? 'text-purple-400 hover:bg-purple-500/10' 
-                        : 'text-zinc-400 hover:text-white hover:bg-zinc-700/50'}`}
+                        ? 'text-purple-600 hover:bg-purple-100' 
+                        : 'text-gray-500 hover:text-black hover:bg-gray-100'}`}
                   >
                     <Bookmark className={`w-4 h-4 ${post.isBookmarked ? "fill-current" : ""}`} />
                   </button>
@@ -275,7 +275,7 @@ export default function Home() {
 
       {/* Load More */}
       <div className="text-center mt-8">
-        <button className="px-6 py-3 border border-zinc-700 rounded-lg text-zinc-300 hover:text-white hover:border-purple-500 transition-colors">
+        <button className="px-6 py-3 border border-gray-300 rounded-lg text-gray-600 hover:text-black hover:border-purple-500 transition-colors">
           Load More Posts
         </button>
       </div>

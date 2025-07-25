@@ -58,18 +58,18 @@ export default function JobDetailModal({ job, open, onOpenChange, onBookmark, on
 
   return (
     <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-      <div className="bg-zinc-900 rounded-lg max-w-4xl max-h-[90vh] w-full overflow-hidden flex flex-col">
+      <div className="bg-white rounded-lg max-w-4xl max-h-[90vh] w-full overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="p-6 pb-4 border-b border-zinc-800">
+        <div className="p-6 pb-4 border-b border-gray-200">
           <div className="flex items-start justify-between">
             <div className="flex items-center space-x-4">
-              <div className="w-16 h-16 rounded-full overflow-hidden bg-zinc-800 flex items-center justify-center">
+              <div className="w-16 h-16 rounded-full overflow-hidden bg-gray-100 flex items-center justify-center">
                 <img src={job.logo} alt={job.company} className="w-full h-full object-cover" />
               </div>
               <div>
                 <h2 className="text-2xl font-bold">{job.title}</h2>
-                <p className="text-lg text-zinc-400">{job.company}</p>
-                <div className="flex items-center space-x-4 mt-2 text-sm text-zinc-400">
+                <p className="text-lg text-gray-500">{job.company}</p>
+                <div className="flex items-center space-x-4 mt-2 text-sm text-gray-500">
                   <div className="flex items-center">
                     <MapPin className="w-4 h-4 mr-1" />
                     {job.location}
@@ -87,7 +87,7 @@ export default function JobDetailModal({ job, open, onOpenChange, onBookmark, on
             </div>
             <button
               onClick={() => onBookmark(job.id)}
-              className={`p-2 rounded-full hover:bg-zinc-800 ${job.isBookmarked ? "text-purple-500" : ""}`}
+              className={`p-2 rounded-full hover:bg-gray-100 ${job.isBookmarked ? "text-purple-500" : ""}`}
             >
               <Bookmark className={`w-5 h-5 ${job.isBookmarked ? "fill-current" : ""}`} />
             </button>
@@ -97,32 +97,32 @@ export default function JobDetailModal({ job, open, onOpenChange, onBookmark, on
         <div className="flex-1 overflow-y-auto p-6 space-y-6">
           {/* Quick Info */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="bg-zinc-800/50 backdrop-blur-sm p-4 rounded-lg text-center">
+            <div className="bg-gray-50 backdrop-blur-sm p-4 rounded-lg text-center">
               <DollarSign className="w-6 h-6 mx-auto mb-2 text-purple-500" />
               <p className="text-sm font-medium">{job.salary}</p>
-              <p className="text-xs text-zinc-400">Salary</p>
+              <p className="text-xs text-gray-500">Salary</p>
             </div>
-            <div className="bg-zinc-800/50 backdrop-blur-sm p-4 rounded-lg text-center">
+            <div className="bg-gray-50 backdrop-blur-sm p-4 rounded-lg text-center">
               <Users className="w-6 h-6 mx-auto mb-2 text-purple-500" />
               <p className="text-sm font-medium">{job.applicants}</p>
-              <p className="text-xs text-zinc-400">Applicants</p>
+              <p className="text-xs text-gray-500">Applicants</p>
             </div>
-            <div className="bg-zinc-800/50 backdrop-blur-sm p-4 rounded-lg text-center">
+            <div className="bg-gray-50 backdrop-blur-sm p-4 rounded-lg text-center">
               <Building className="w-6 h-6 mx-auto mb-2 text-purple-500" />
               <p className="text-sm font-medium">{job.remote ? "Remote" : "On-site"}</p>
-              <p className="text-xs text-zinc-400">Work Mode</p>
+              <p className="text-xs text-gray-500">Work Mode</p>
             </div>
-            <div className="bg-zinc-800/50 backdrop-blur-sm p-4 rounded-lg text-center">
+            <div className="bg-gray-50 backdrop-blur-sm p-4 rounded-lg text-center">
               <CheckCircle2 className="w-6 h-6 mx-auto mb-2 text-purple-500" />
               <p className="text-sm font-medium">Open</p>
-              <p className="text-xs text-zinc-400">Status</p>
+              <p className="text-xs text-gray-500">Status</p>
             </div>
           </div>
 
           {/* Job Description */}
           <div className="space-y-4">
             <h3 className="text-lg font-semibold">About this role</h3>
-            <p className="text-sm leading-relaxed text-zinc-400">{job.description}</p>
+            <p className="text-sm leading-relaxed text-gray-500">{job.description}</p>
           </div>
 
           {/* Skills */}
@@ -130,7 +130,7 @@ export default function JobDetailModal({ job, open, onOpenChange, onBookmark, on
             <h3 className="text-lg font-semibold">Required Skills</h3>
             <div className="flex flex-wrap gap-2">
               {job.skills.map((skill, index) => (
-                <span key={index} className="bg-zinc-800 text-xs px-2 py-1 rounded-full">
+                <span key={index} className="bg-gray-100 text-xs px-2 py-1 rounded-full">
                   {skill}
                 </span>
               ))}
@@ -163,38 +163,38 @@ export default function JobDetailModal({ job, open, onOpenChange, onBookmark, on
             </div>
           </div>
 
-          <div className="border-t border-zinc-800 my-6"></div>
+          <div className="border-t border-gray-200 my-6"></div>
 
           {/* Company Info */}
           <div className="space-y-4">
             <h3 className="text-lg font-semibold">About {job.company}</h3>
-            <div className="bg-zinc-800/50 backdrop-blur-sm p-4 rounded-lg">
+            <div className="bg-gray-50 backdrop-blur-sm p-4 rounded-lg">
               <div className="flex items-center space-x-4 mb-4">
-                <div className="w-12 h-12 rounded-full overflow-hidden bg-zinc-700 flex items-center justify-center">
+                <div className="w-12 h-12 rounded-full overflow-hidden bg-gray-100 flex items-center justify-center">
                   <img src={job.logo} alt={job.company} className="w-full h-full object-cover" />
                 </div>
                 <div>
                   <h4 className="font-semibold">{job.company}</h4>
-                  <p className="text-sm text-zinc-400">{companyInfo.industry}</p>
+                  <p className="text-sm text-gray-500">{companyInfo.industry}</p>
                 </div>
               </div>
-              <p className="text-sm text-zinc-400 mb-4">{companyInfo.description}</p>
+              <p className="text-sm text-gray-500 mb-4">{companyInfo.description}</p>
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div>
                   <p className="font-medium">Company Size</p>
-                  <p className="text-zinc-400">{companyInfo.size}</p>
+                  <p className="text-gray-500">{companyInfo.size}</p>
                 </div>
                 <div>
                   <p className="font-medium">Founded</p>
-                  <p className="text-zinc-400">{companyInfo.founded}</p>
+                  <p className="text-gray-500">{companyInfo.founded}</p>
                 </div>
               </div>
               <div className="flex items-center space-x-4 mt-4">
-                <button className="px-3 py-1 border border-zinc-700 rounded-md text-sm flex items-center hover:bg-zinc-800">
+                <button className="px-3 py-1 border border-gray-300 rounded-md text-sm flex items-center hover:bg-gray-100">
                   <Globe className="w-4 h-4 mr-2" />
                   Website
                 </button>
-                <button className="px-3 py-1 border border-zinc-700 rounded-md text-sm flex items-center hover:bg-zinc-800">
+                <button className="px-3 py-1 border border-gray-300 rounded-md text-sm flex items-center hover:bg-gray-100">
                   <Mail className="w-4 h-4 mr-2" />
                   Contact
                 </button>
@@ -207,12 +207,12 @@ export default function JobDetailModal({ job, open, onOpenChange, onBookmark, on
             <h3 className="text-lg font-semibold">Meet the team</h3>
             <div className="flex space-x-4">
               {teamMembers.map((member, index) => (
-                <div key={index} className="bg-zinc-800/50 backdrop-blur-sm p-3 rounded-lg text-center">
-                  <div className="w-12 h-12 rounded-full overflow-hidden bg-zinc-700 mx-auto mb-2">
+                <div key={index} className="bg-gray-50 backdrop-blur-sm p-3 rounded-lg text-center">
+                  <div className="w-12 h-12 rounded-full overflow-hidden bg-gray-100 mx-auto mb-2">
                     <img src={member.avatar} alt={member.name} className="w-full h-full object-cover" />
                   </div>
                   <p className="text-sm font-medium">{member.name}</p>
-                  <p className="text-xs text-zinc-400">{member.role}</p>
+                  <p className="text-xs text-gray-500">{member.role}</p>
                 </div>
               ))}
             </div>
@@ -220,13 +220,13 @@ export default function JobDetailModal({ job, open, onOpenChange, onBookmark, on
         </div>
 
         {/* Action Buttons */}
-        <div className="flex items-center justify-between p-6 border-t border-zinc-800">
-          <div className="flex items-center space-x-2 text-sm text-zinc-400">
+        <div className="flex items-center justify-between p-6 border-t border-gray-200">
+          <div className="flex items-center space-x-2 text-sm text-gray-500">
             <Users className="w-4 h-4" />
             <span>{job.applicants} people have applied</span>
           </div>
           <div className="flex space-x-3">
-            <button className="px-4 py-2 border border-zinc-700 rounded-md text-sm flex items-center hover:bg-zinc-800">
+            <button className="px-4 py-2 border border-gray-300 rounded-md text-sm flex items-center hover:bg-gray-100">
               <ExternalLink className="w-4 h-4 mr-2" />
               View Company
             </button>
@@ -242,7 +242,7 @@ export default function JobDetailModal({ job, open, onOpenChange, onBookmark, on
         
         {/* Close button */}
         <button 
-          className="absolute top-4 right-4 text-zinc-400 hover:text-white"
+          className="absolute top-4 right-4 text-gray-500 hover:text-black"
           onClick={() => onOpenChange(false)}
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

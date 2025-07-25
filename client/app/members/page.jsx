@@ -138,7 +138,7 @@ export default function Members() {
 
       <div className="mb-8">
         <h1 className="text-3xl font-bold">Member Directory</h1>
-        <p className="text-zinc-500">
+        <p className="text-gray-500">
           Connect with {members.length} amazing alumni
         </p>
       </div>
@@ -146,26 +146,26 @@ export default function Members() {
       {/* Search and Filters */}
       <div className="flex flex-col md:flex-row gap-4 mb-8">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-zinc-500" />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500" />
           <input
             type="text"
             placeholder="Search by name, title, company, or skills..."
-            className="w-full pl-10 py-2 bg-zinc-800/50 border border-zinc-700 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="w-full pl-10 py-2 bg-gray-50/50 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
 
         <div className="flex items-center space-x-2">
-          <button className="flex items-center px-3 py-2 text-sm border border-zinc-700 rounded-md hover:bg-zinc-800">
+          <button className="flex items-center px-3 py-2 text-sm border border-gray-200 rounded-md hover:bg-gray-100">
             <MapPin className="w-4 h-4 mr-2" />
             Location
           </button>
-          <button className="flex items-center px-3 py-2 text-sm border border-zinc-700 rounded-md hover:bg-zinc-800">
+          <button className="flex items-center px-3 py-2 text-sm border border-gray-200 rounded-md hover:bg-gray-100">
             <Briefcase className="w-4 h-4 mr-2" />
             Industry
           </button>
-          <button className="flex items-center px-3 py-2 text-sm border border-zinc-700 rounded-md hover:bg-zinc-800">
+          <button className="flex items-center px-3 py-2 text-sm border border-gray-200 rounded-md hover:bg-gray-100">
             <Users className="w-4 h-4 mr-2" />
             Role
           </button>
@@ -177,7 +177,7 @@ export default function Members() {
         {filteredMembers.map((member) => (
           <div
             key={member.id}
-            className="bg-zinc-800/30 backdrop-blur-sm rounded-lg border border-zinc-700/50 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+            className="bg-white/80 backdrop-blur-sm rounded-lg border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
           >
             <div className="p-6">
               <div className="flex items-start justify-between pb-4">
@@ -196,18 +196,18 @@ export default function Members() {
                     <h3 className="text-lg font-medium hover:text-purple-400 transition-colors">
                       {member.name}
                     </h3>
-                    <p className="text-sm text-zinc-400">
+                    <p className="text-sm text-gray-500">
                       {member.title} at {member.company}
                     </p>
                   </div>
                 </div>
-                <button className="p-2 text-zinc-400 hover:text-red-500 rounded-md">
+                <button className="p-2 text-gray-500 hover:text-red-500 rounded-md">
                   <Heart className="w-4 h-4" />
                 </button>
               </div>
 
               <div className="space-y-4">
-                <div className="flex items-center text-sm text-zinc-400">
+                <div className="flex items-center text-sm text-gray-500">
                   <MapPin className="w-4 h-4 mr-2" />
                   {member.location}
                 </div>
@@ -216,20 +216,20 @@ export default function Members() {
                   {member.skills.slice(0, 3).map((skill, index) => (
                     <span
                       key={index}
-                      className="px-2 py-1 text-xs border border-zinc-700 rounded-full text-zinc-300"
+                      className="px-2 py-1 text-xs border border-gray-300 rounded-full text-gray-600"
                     >
                       {skill}
                     </span>
                   ))}
                   {member.skills.length > 3 && (
-                    <span className="px-2 py-1 text-xs border border-zinc-700 rounded-full text-zinc-300">
+                    <span className="px-2 py-1 text-xs border border-gray-300 rounded-full text-gray-600">
                       +{member.skills.length - 3} more
                     </span>
                   )}
                 </div>
 
                 <div>
-                  <button className="flex items-center px-3 py-2 text-sm border border-zinc-700 rounded-md hover:bg-zinc-800">
+                  <button className="flex items-center px-3 py-2 text-sm border border-gray-300 rounded-md hover:bg-gray-100">
                     <MessageCircle className="w-4 h-4 mr-2" />
                     Message
                   </button>
@@ -242,7 +242,7 @@ export default function Members() {
 
       {/* Load More */}
       <div className="text-center mt-12">
-        <button className="px-6 py-3 text-sm border border-zinc-700 rounded-md hover:bg-zinc-800">
+        <button className="px-6 py-3 text-sm border border-gray-300 rounded-md hover:bg-gray-100">
           Load More Members
         </button>
       </div>

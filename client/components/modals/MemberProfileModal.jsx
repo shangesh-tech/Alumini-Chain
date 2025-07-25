@@ -111,8 +111,8 @@ export default function MemberProfileModal({ member, open, onOpenChange, onFollo
 
   return (
     <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4">
-      <div className="bg-zinc-800 rounded-lg shadow-xl max-w-4xl max-h-[90vh] w-full overflow-hidden flex flex-col">
-        <div className="p-6 pb-4 border-b border-zinc-700">
+      <div className="bg-white rounded-lg shadow-xl max-w-4xl max-h-[90vh] w-full overflow-hidden flex flex-col">
+        <div className="p-6 pb-4 border-b border-gray-200">
           <h2 className="sr-only">Member Profile</h2>
           <div className="flex items-start justify-between">
             <div className="flex items-center space-x-4">
@@ -122,9 +122,9 @@ export default function MemberProfileModal({ member, open, onOpenChange, onFollo
               <div>
                 
                 <h1 className="text-2xl font-bold">{member.name}</h1>
-                <p className="text-lg text-zinc-400">{member.title}</p>
-                <p className="text-sm text-zinc-400">{member.company}</p>
-                <div className="flex items-center space-x-4 mt-2 text-sm text-zinc-400">
+                <p className="text-lg text-gray-500">{member.title}</p>
+                <p className="text-sm text-gray-500">{member.company}</p>
+                <div className="flex items-center space-x-4 mt-2 text-sm text-gray-500">
                   <div className="flex items-center">
                     <MapPin className="w-4 h-4 mr-1" />
                     {member.location}
@@ -133,12 +133,12 @@ export default function MemberProfileModal({ member, open, onOpenChange, onFollo
               </div>
             </div>
             <div className="flex space-x-2">
-              <button className="px-3 py-1.5 border border-zinc-600 rounded-lg text-sm flex items-center hover:bg-zinc-700 transition-colors">
+              <button className="px-3 py-1.5 border border-gray-200 rounded-lg text-sm flex items-center hover:bg-gray-100 transition-colors">
                 <MessageCircle className="w-4 h-4 mr-2" />
                 Message
               </button>
               <button 
-                className="p-2 hover:bg-zinc-700 rounded-lg transition-colors"
+                className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
                 onClick={() => onOpenChange(false)}
               >
                 <X className="w-5 h-5" />
@@ -151,7 +151,7 @@ export default function MemberProfileModal({ member, open, onOpenChange, onFollo
           {/* About */}
           <div className="space-y-4">
             <h3 className="text-lg font-semibold">About</h3>
-            <p className="text-sm leading-relaxed text-zinc-400">{profileData.bio}</p>
+            <p className="text-sm leading-relaxed text-gray-500">{profileData.bio}</p>
           </div>
 
           {/* Contact Information */}
@@ -159,19 +159,19 @@ export default function MemberProfileModal({ member, open, onOpenChange, onFollo
             <h3 className="text-lg font-semibold">Contact Information</h3>
             <div className="grid grid-cols-2 gap-4">
               <div className="flex items-center space-x-2 text-sm">
-                <Mail className="w-4 h-4 text-zinc-400" />
+                <Mail className="w-4 h-4 text-gray-500" />
                 <span>{profileData.contact.email}</span>
               </div>
               <div className="flex items-center space-x-2 text-sm">
-                <Phone className="w-4 h-4 text-zinc-400" />
+                <Phone className="w-4 h-4 text-gray-500" />
                 <span>{profileData.contact.phone}</span>
               </div>
               <div className="flex items-center space-x-2 text-sm">
-                <Globe className="w-4 h-4 text-zinc-400" />
+                <Globe className="w-4 h-4 text-gray-500" />
                 <span>{profileData.contact.website}</span>
               </div>
               <div className="flex items-center space-x-2 text-sm">
-                <Linkedin className="w-4 h-4 text-zinc-400" />
+                <Linkedin className="w-4 h-4 text-gray-500" />
                 <span>LinkedIn Profile</span>
               </div>
             </div>
@@ -182,21 +182,21 @@ export default function MemberProfileModal({ member, open, onOpenChange, onFollo
             <h3 className="text-lg font-semibold">Skills & Expertise</h3>
             <div className="flex flex-wrap gap-2">
               {member.skills.map((skill, index) => (
-                <span key={index} className="px-2 py-1 bg-zinc-700 text-zinc-300 rounded-full text-xs">
+                <span key={index} className="px-2 py-1 bg-gray-100 text-gray-600 rounded-full text-xs">
                   {skill}
                 </span>
               ))}
             </div>
           </div>
 
-          <div className="border-t border-zinc-700 my-6"></div>
+          <div className="border-t border-gray-200 my-6"></div>
 
           {/* Experience */}
           <div className="space-y-4">
             <h3 className="text-lg font-semibold">Experience</h3>
             <div className="space-y-4">
               {profileData.experience.map((exp, index) => (
-                <div key={index} className="bg-zinc-800/50 border border-zinc-700 rounded-lg">
+                <div key={index} className="bg-gray-50 border border-gray-200 rounded-lg">
                   <div className="p-4">
                     <div className="flex items-start space-x-3">
                       <div className="w-10 h-10 bg-purple-600/10 rounded-lg flex items-center justify-center">
@@ -204,8 +204,8 @@ export default function MemberProfileModal({ member, open, onOpenChange, onFollo
                       </div>
                       <div className="flex-1">
                         <h4 className="font-semibold">{exp.title}</h4>
-                        <p className="text-sm text-zinc-400">{exp.company} • {exp.location}</p>
-                        <p className="text-xs text-zinc-500 mb-2">{exp.period}</p>
+                        <p className="text-sm text-gray-500">{exp.company} • {exp.location}</p>
+                        <p className="text-xs text-gray-500 mb-2">{exp.period}</p>
                         <p className="text-sm leading-relaxed">{exp.description}</p>
                       </div>
                     </div>
@@ -220,7 +220,7 @@ export default function MemberProfileModal({ member, open, onOpenChange, onFollo
             <h3 className="text-lg font-semibold">Education</h3>
             <div className="space-y-4">
               {profileData.education.map((edu, index) => (
-                <div key={index} className="bg-zinc-800/50 border border-zinc-700 rounded-lg">
+                <div key={index} className="bg-gray-50 border border-gray-200 rounded-lg">
                   <div className="p-4">
                     <div className="flex items-start space-x-3">
                       <div className="w-10 h-10 bg-purple-600/10 rounded-lg flex items-center justify-center">
@@ -228,8 +228,8 @@ export default function MemberProfileModal({ member, open, onOpenChange, onFollo
                       </div>
                       <div className="flex-1">
                         <h4 className="font-semibold">{edu.degree}</h4>
-                        <p className="text-sm text-zinc-400">{edu.school}</p>
-                        <p className="text-xs text-zinc-500 mb-2">{edu.period}</p>
+                        <p className="text-sm text-gray-500">{edu.school}</p>
+                        <p className="text-xs text-gray-500 mb-2">{edu.period}</p>
                         <p className="text-sm leading-relaxed">{edu.description}</p>
                       </div>
                     </div>
@@ -244,7 +244,7 @@ export default function MemberProfileModal({ member, open, onOpenChange, onFollo
             <h3 className="text-lg font-semibold">Certifications</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {profileData.certifications.map((cert, index) => (
-                <div key={index} className="bg-zinc-800/50 border border-zinc-700 rounded-lg">
+                <div key={index} className="bg-gray-50 border border-gray-200 rounded-lg">
                   <div className="p-4">
                     <div className="flex items-start space-x-3">
                       <div className="w-8 h-8 bg-purple-600/10 rounded-lg flex items-center justify-center">
@@ -252,7 +252,7 @@ export default function MemberProfileModal({ member, open, onOpenChange, onFollo
                       </div>
                       <div className="flex-1">
                         <h4 className="font-medium text-sm">{cert.name}</h4>
-                        <p className="text-xs text-zinc-400">{cert.issuer} • {cert.date}</p>
+                        <p className="text-xs text-gray-500">{cert.issuer} • {cert.date}</p>
                       </div>
                     </div>
                   </div>
@@ -266,21 +266,21 @@ export default function MemberProfileModal({ member, open, onOpenChange, onFollo
             <h3 className="text-lg font-semibold">Featured Projects</h3>
             <div className="space-y-4">
               {profileData.projects.map((project, index) => (
-                <div key={index} className="bg-zinc-800/50 border border-zinc-700 rounded-lg">
+                <div key={index} className="bg-gray-50 border border-gray-200 rounded-lg">
                   <div className="p-4">
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
                         <h4 className="font-semibold">{project.name}</h4>
-                        <p className="text-sm text-zinc-400 mb-3">{project.description}</p>
+                        <p className="text-sm text-gray-500 mb-3">{project.description}</p>
                         <div className="flex flex-wrap gap-2">
                           {project.tags.map((tag, tagIndex) => (
-                            <span key={tagIndex} className="px-2 py-1 border border-zinc-600 text-zinc-300 rounded-full text-xs">
+                            <span key={tagIndex} className="px-2 py-1 border border-gray-300 text-gray-600 rounded-full text-xs">
                               {tag}
                             </span>
                           ))}
                         </div>
                       </div>
-                      <button className="p-2 hover:bg-zinc-700 rounded-lg transition-colors">
+                      <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
                         <ExternalLink className="w-4 h-4" />
                       </button>
                     </div>

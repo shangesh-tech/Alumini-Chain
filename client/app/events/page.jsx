@@ -114,9 +114,9 @@ export default function Events() {
       <div className="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0 mb-8">
         <div>
           <h1 className="text-3xl font-bold">Events</h1>
-          <p className="text-zinc-400">Discover and join amazing events</p>
+          <p className="text-gray-500">Discover and join amazing events</p>
         </div>
-          <button className="px-3 py-2 bg-purple-600 hover:bg-purple-700 rounded-md text-sm flex items-center transition-colors">
+          <button className="px-3 py-2 text-white bg-purple-600 hover:bg-purple-700 rounded-md text-sm flex items-center transition-colors">
             <Plus className="w-4 h-4 mr-2" />
             Create Event
           </button>
@@ -130,7 +130,7 @@ export default function Events() {
             className={`px-3 py-2 rounded-md text-sm capitalize ${
               filter === filterType 
                 ? "bg-purple-600 text-white" 
-                : "border border-zinc-700 hover:bg-zinc-800"
+                : "border border-gray-300 hover:bg-gray-100"
             }`}
             onClick={() => setFilter(filterType)}
           >
@@ -144,7 +144,7 @@ export default function Events() {
         <h2 className="text-xl font-semibold mb-4">Featured Events</h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {filteredEvents.filter(event => event.featured).map((event) => (
-            <div key={event.id} className="bg-zinc-800/30 backdrop-blur-sm rounded-lg border border-zinc-700/50 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden">
+            <div key={event.id} className="bg-white/80 backdrop-blur-sm rounded-lg border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden">
               <div 
                 className="h-48 bg-cover bg-center relative"
                 style={{ backgroundImage: `url(${event.image})` }}
@@ -170,22 +170,22 @@ export default function Events() {
               </div>
               
               <div className="px-6 pb-6 space-y-4">
-                <div className="flex items-center text-sm text-zinc-400">
+                <div className="flex items-center text-sm text-gray-500">
                   <Calendar className="w-4 h-4 mr-2" />
                   {new Date(event.date).toLocaleDateString()}
                 </div>
                 
-                <div className="flex items-center text-sm text-zinc-400">
+                <div className="flex items-center text-sm text-gray-500">
                   <Clock className="w-4 h-4 mr-2" />
                   {event.time}
                 </div>
                 
-                <div className="flex items-center text-sm text-zinc-400">
+                <div className="flex items-center text-sm text-gray-500">
                   <MapPin className="w-4 h-4 mr-2" />
                   {event.location}
                 </div>
                 
-                <div className="flex items-center text-sm text-zinc-400">
+                <div className="flex items-center text-sm text-gray-500">
                   <Users className="w-4 h-4 mr-2" />
                   {event.attendees} / {event.maxAttendees} attendees
                 </div>
@@ -212,7 +212,7 @@ export default function Events() {
         <h2 className="text-xl font-semibold mb-4">All Events</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredEvents.map((event) => (
-            <div key={event.id} className="bg-zinc-800/30 backdrop-blur-sm rounded-lg border border-zinc-700/50 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+            <div key={event.id} className="bg-white/80 backdrop-blur-sm rounded-lg border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden">
               <div 
                 className="h-32 bg-cover bg-center relative"
                 style={{ backgroundImage: `url(${event.image})` }}
@@ -227,22 +227,22 @@ export default function Events() {
               
               <div className="p-4">
                 <h3 className="text-lg font-medium">{event.title}</h3>
-                <p className="text-zinc-400 text-sm line-clamp-2">{event.description}</p>
+                <p className="text-gray-500 text-sm line-clamp-2">{event.description}</p>
               </div>
               
               <div className="px-4 pb-4 space-y-3">
-                <div className="flex items-center text-sm text-zinc-400">
+                <div className="flex items-center text-sm text-gray-500">
                   <Calendar className="w-4 h-4 mr-2" />
                   {new Date(event.date).toLocaleDateString()}
                 </div>
                 
-                <div className="flex items-center text-sm text-zinc-400">
+                <div className="flex items-center text-sm text-gray-500">
                   <MapPin className="w-4 h-4 mr-2" />
                   {event.location}
                 </div>
                 
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center text-sm text-zinc-400">
+                  <div className="flex items-center text-sm text-gray-500">
                     <Users className="w-4 h-4 mr-2" />
                     {event.attendees} attending
                   </div>
@@ -263,14 +263,14 @@ export default function Events() {
       {/* Event Modal */}
       {isModalOpen && selectedEvent && (
         <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4">
-          <div className="bg-zinc-800 rounded-lg shadow-xl max-w-2xl max-h-[90vh] w-full overflow-hidden flex flex-col">
-            <div className="p-6 pb-4 border-b border-zinc-700 flex justify-between items-start">
+          <div className="bg-white rounded-lg shadow-xl max-w-2xl max-h-[90vh] w-full overflow-hidden flex flex-col">
+            <div className="p-6 pb-4 border-b border-gray-200 flex justify-between items-start">
               <div>
                 <h2 className="text-xl font-bold">{selectedEvent.title}</h2>
-                <p className="text-zinc-400">{selectedEvent.description}</p>
+                <p className="text-gray-500">{selectedEvent.description}</p>
               </div>
               <button 
-                className="p-2 hover:bg-zinc-700 rounded-lg transition-colors"
+                className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
                 onClick={() => setIsModalOpen(false)}
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
@@ -324,12 +324,12 @@ export default function Events() {
                           </div>
                           <div>
                             <p className="text-sm font-medium">{speaker.name}</p>
-                            <p className="text-xs text-zinc-400">{speaker.role}</p>
+                            <p className="text-xs text-gray-500">{speaker.role}</p>
                           </div>
                         </div>
                       ))
                     ) : (
-                      <p className="text-sm text-zinc-400">No speakers listed for this event</p>
+                      <p className="text-sm text-gray-500">No speakers listed for this event</p>
                     )}
                   </div>
                 </div>
@@ -342,7 +342,7 @@ export default function Events() {
                 >
                   Join Event - {selectedEvent.price}
                 </button>
-                <button className="px-4 py-2 border border-zinc-700 rounded-md hover:bg-zinc-700 transition-colors flex items-center">
+                <button className="px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-100 transition-colors flex items-center">
                   <Video className="w-4 h-4 mr-2" />
                   Add to Calendar
                 </button>

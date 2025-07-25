@@ -71,23 +71,22 @@ export default function PostDetailModal({ post, open, onOpenChange, onLike, onBo
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       {/* Backdrop */}
-      <div 
-        className="fixed inset-0 bg-black/80 backdrop-blur-sm"
+      <div className="fixed inset-0 bg-black/50 backdrop-blur-sm"
         onClick={() => onOpenChange(false)}
       />
 
       {/* Modal */}
-      <div className="relative bg-zinc-800 rounded-xl shadow-xl w-full max-w-4xl max-h-[90vh] mx-4 overflow-hidden">
+      <div className="relative bg-white rounded-xl shadow-xl w-full max-w-4xl max-h-[90vh] mx-4 overflow-hidden">
         {/* Close button */}
         <button 
           onClick={() => onOpenChange(false)}
-          className="absolute top-4 right-4 p-2 text-zinc-400 hover:text-white hover:bg-zinc-700/50 rounded-lg transition-colors"
+          className="absolute top-4 right-4 p-2 text-gray-500 hover:text-black hover:bg-gray-100 rounded-lg transition-colors"
         >
           <X className="w-4 h-4" />
         </button>
 
         {/* Header */}
-        <div className="p-6 border-b border-zinc-700">
+        <div className="p-6 border-b border-gray-200">
           <div className="flex items-start justify-between">
             <div className="flex items-center space-x-3">
               <div className="w-12 h-12 rounded-full overflow-hidden">
@@ -95,12 +94,12 @@ export default function PostDetailModal({ post, open, onOpenChange, onLike, onBo
               </div>
               <div>
                 <h3 className="font-semibold text-lg">{post.author}</h3>
-                <p className="text-sm text-zinc-400">{post.title} at {post.company}</p>
-                <p className="text-xs text-zinc-500">{post.timestamp}</p>
+                <p className="text-sm text-gray-500">{post.title} at {post.company}</p>
+                <p className="text-xs text-gray-500">{post.timestamp}</p>
               </div>
             </div>
-            <button className="p-2 hover:bg-zinc-700/50 rounded-lg transition-colors">
-              <MoreHorizontal className="w-4 h-4 text-zinc-400" />
+            <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+              <MoreHorizontal className="w-4 h-4 text-gray-500" />
             </button>
           </div>
         </div>
@@ -126,7 +125,7 @@ export default function PostDetailModal({ post, open, onOpenChange, onLike, onBo
                 {post.tags.map((tag, index) => (
                   <span 
                     key={index}
-                    className="px-2 py-1 text-xs rounded-full border border-zinc-700 text-zinc-300 hover:border-purple-500 transition-colors"
+                    className="px-2 py-1 text-xs rounded-full border border-gray-300 text-gray-600 hover:border-purple-500 transition-colors"
                   >
                     #{tag}
                   </span>
@@ -135,27 +134,27 @@ export default function PostDetailModal({ post, open, onOpenChange, onLike, onBo
             </div>
 
             {/* Post Actions */}
-            <div className="flex items-center justify-between pt-4 border-t border-zinc-700/40">
+            <div className="flex items-center justify-between pt-4 border-t border-gray-200">
               <div className="flex items-center space-x-6">
                 <button 
                   onClick={() => onLike(post.id)}
                   className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-colors
                     ${post.isLiked 
-                      ? 'text-red-500 hover:bg-red-500/10' 
-                      : 'text-zinc-400 hover:text-white hover:bg-zinc-700/50'}`}
+                      ? 'text-red-500 hover:bg-red-100' 
+                      : 'text-gray-500 hover:text-black hover:bg-gray-100'}`}
                 >
                   <Heart className={`w-4 h-4 ${post.isLiked ? "fill-current" : ""}`} />
                   <span>{post.likes}</span>
                 </button>
                 
-                <button className="flex items-center space-x-2 px-3 py-2 text-zinc-400 hover:text-white hover:bg-zinc-700/50 rounded-lg transition-colors">
+                <button className="flex items-center space-x-2 px-3 py-2 text-gray-500 hover:text-black hover:bg-gray-100 rounded-lg transition-colors">
                   <MessageCircle className="w-4 h-4" />
                   <span>{post.comments}</span>
                 </button>
                 
                 <button 
                   onClick={() => onShare(post.id)}
-                  className="flex items-center space-x-2 px-3 py-2 text-zinc-400 hover:text-white hover:bg-zinc-700/50 rounded-lg transition-colors"
+                  className="flex items-center space-x-2 px-3 py-2 text-gray-500 hover:text-black hover:bg-gray-100 rounded-lg transition-colors"
                 >
                   <Share2 className="w-4 h-4" />
                   <span>{post.shares}</span>
@@ -166,14 +165,14 @@ export default function PostDetailModal({ post, open, onOpenChange, onLike, onBo
                 onClick={() => onBookmark(post.id)}
                 className={`p-2 rounded-lg transition-colors
                   ${post.isBookmarked 
-                    ? 'text-purple-400 hover:bg-purple-500/10' 
-                    : 'text-zinc-400 hover:text-white hover:bg-zinc-700/50'}`}
+                    ? 'text-purple-600 hover:bg-purple-100' 
+                    : 'text-gray-500 hover:text-black hover:bg-gray-100'}`}
               >
                 <Bookmark className={`w-4 h-4 ${post.isBookmarked ? "fill-current" : ""}`} />
               </button>
             </div>
 
-            <div className="border-t border-zinc-700/40 pt-6">
+            <div className="border-t border-gray-200 pt-6">
               {/* Add Comment */}
               <div className="space-y-4">
                 <h4 className="font-semibold">Add a comment</h4>
@@ -190,7 +189,7 @@ export default function PostDetailModal({ post, open, onOpenChange, onLike, onBo
                       placeholder="Write a comment..."
                       value={newComment}
                       onChange={(e) => setNewComment(e.target.value)}
-                      className="w-full min-h-[80px] resize-none bg-zinc-800/50 rounded-lg border border-zinc-700/50 p-3 text-white placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-purple-500/50"
+                      className="w-full min-h-[80px] resize-none bg-gray-50 rounded-lg border border-gray-200 p-3 text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500/50"
                     />
                     <div className="flex justify-end">
                       <button 
@@ -199,7 +198,7 @@ export default function PostDetailModal({ post, open, onOpenChange, onLike, onBo
                         className={`flex items-center px-4 py-2 rounded-lg text-sm font-medium transition-colors
                           ${newComment.trim() 
                             ? 'bg-purple-600 hover:bg-purple-700 text-white' 
-                            : 'bg-zinc-700/50 text-zinc-400 cursor-not-allowed'}`}
+                            : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`}
                       >
                         <Send className="w-4 h-4 mr-2" />
                         Comment
@@ -219,19 +218,19 @@ export default function PostDetailModal({ post, open, onOpenChange, onLike, onBo
                         <img src={comment.avatar} alt={comment.author} className="w-full h-full object-cover" />
                       </div>
                       <div className="flex-1">
-                        <div className="bg-zinc-800/50 p-3 rounded-lg">
+                        <div className="bg-gray-50 p-3 rounded-lg">
                           <div className="flex items-center justify-between mb-2">
                             <h5 className="font-medium text-sm">{comment.author}</h5>
-                            <span className="text-xs text-zinc-400">{comment.timestamp}</span>
+                            <span className="text-xs text-gray-500">{comment.timestamp}</span>
                           </div>
                           <p className="text-sm leading-relaxed">{comment.content}</p>
                         </div>
                         <div className="flex items-center space-x-4 mt-2">
-                          <button className="flex items-center space-x-1 text-xs text-zinc-400 hover:text-white transition-colors">
+                          <button className="flex items-center space-x-1 text-xs text-gray-500 hover:text-black transition-colors">
                             <ThumbsUp className="w-3 h-3" />
                             <span>{comment.likes}</span>
                           </button>
-                          <button className="flex items-center space-x-1 text-xs text-zinc-400 hover:text-white transition-colors">
+                          <button className="flex items-center space-x-1 text-xs text-gray-500 hover:text-black transition-colors">
                             <Reply className="w-3 h-3" />
                             <span>Reply</span>
                           </button>
@@ -248,15 +247,15 @@ export default function PostDetailModal({ post, open, onOpenChange, onLike, onBo
                               <img src={reply.avatar} alt={reply.author} className="w-full h-full object-cover" />
                             </div>
                             <div className="flex-1">
-                              <div className="bg-zinc-800/50 p-2 rounded-lg">
+                              <div className="bg-gray-50 p-2 rounded-lg">
                                 <div className="flex items-center justify-between mb-1">
                                   <h6 className="font-medium text-xs">{reply.author}</h6>
-                                  <span className="text-xs text-zinc-400">{reply.timestamp}</span>
+                                  <span className="text-xs text-gray-500">{reply.timestamp}</span>
                                 </div>
                                 <p className="text-xs leading-relaxed">{reply.content}</p>
                               </div>
                               <div className="flex items-center space-x-2 mt-1">
-                                <button className="flex items-center space-x-1 text-xs text-zinc-400 hover:text-white transition-colors">
+                                <button className="flex items-center space-x-1 text-xs text-gray-500 hover:text-black transition-colors">
                                   <ThumbsUp className="w-3 h-3" />
                                   <span>{reply.likes}</span>
                                 </button>

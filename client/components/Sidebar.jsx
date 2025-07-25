@@ -64,9 +64,9 @@ const MenuItem = ({ item }) => {
       className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 ease-in-out group
         ${isActive(item.path)
           ? 'bg-purple-600 text-white font-medium'
-          : 'text-zinc-400 hover:bg-zinc-800 hover:text-white'}`}
+          : 'text-gray-600 hover:bg-gray-100 hover:text-black'}`}
     >
-      <span className={`transition-colors ${isActive(item.path) ? 'text-white' : 'text-zinc-400 group-hover:text-white'}`}>
+      <span className={`transition-colors ${isActive(item.path) ? 'text-white' : 'text-gray-600 group-hover:text-black'}`}>
         {item.icon}
       </span>
       <span className="text-sm font-medium">{item.title}</span>
@@ -97,14 +97,14 @@ const Sidebar = () => {
 
       {/* Sidebar */}
       <aside 
-        className={`fixed top-0 left-0 w-64 h-full bg-zinc-900 border-r border-zinc-800 flex flex-col z-40 
+        className={`fixed top-0 left-0 w-64 h-full bg-white border-r border-gray-200 flex flex-col z-40 
           transition-transform duration-300 ease-in-out transform
           ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0`}
       >
         {/* Close button - mobile only */}
         <button
           onClick={closeSidebar}
-          className="md:hidden absolute top-5 right-1 p-1.5 text-zinc-400 hover:text-white hover:bg-zinc-800 rounded-lg transition-colors"
+          className="md:hidden absolute top-5 right-1 p-1.5 text-gray-500 hover:text-black hover:bg-gray-100 rounded-lg transition-colors"
         >
           <X size={25} />
         </button>
@@ -112,17 +112,17 @@ const Sidebar = () => {
         {/* Logo */}
         <Link
           href="/"
-          className="flex items-center gap-3 px-6 py-5 border-b border-zinc-800"
+          className="flex items-center gap-3 px-6 py-5 border-b border-gray-200"
         >
           <span className="h-9 w-9 bg-gradient-to-tr from-purple-500 to-purple-600 rounded-lg flex items-center justify-center shadow-md">
             <Rocket size={20} className="text-white" />
           </span>
-          <span className="font-bold text-xl text-white">Alumini Chain</span>
+          <span className="font-bold text-xl text-black">Alumini Chain</span>
         </Link>
         
         {/* Navigation */}
         <div className="flex-1 overflow-y-auto px-3 py-6">
-          <p className="text-xs font-medium text-zinc-400 uppercase tracking-wider px-3 mb-4">Main Menu</p>
+          <p className="text-xs font-medium text-gray-500 uppercase tracking-wider px-3 mb-4">Main Menu</p>
           <nav className="space-y-1">
             {SIDENAV_ITEMS.map((item, idx) => (
               <MenuItem key={idx} item={item} />
@@ -131,9 +131,9 @@ const Sidebar = () => {
         </div>
         
         {/* Footer */}
-        <div className="px-6 py-4 border-t border-zinc-800 bg-zinc-900/50">
+        <div className="px-6 py-4 border-t border-gray-200 bg-gray-50">
           <div className="flex items-center justify-between">
-            <span className="text-xs text-zinc-400">© {new Date().getFullYear()} Alumini Chain</span>
+            <span className="text-xs text-gray-500">© {new Date().getFullYear()} Alumini Chain</span>
             <span className="text-xs bg-purple-600 text-white px-2 py-1 rounded-full font-medium">v1.0.0</span>
           </div>
         </div>

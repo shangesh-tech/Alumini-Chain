@@ -129,10 +129,10 @@ export default function Jobs() {
       <div className="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0 mb-8">
         <div>
           <h1 className="text-3xl font-bold">Job Board</h1>
-          <p className="text-zinc-500">Discover your next opportunity</p>
+          <p className="text-gray-500">Discover your next opportunity</p>
         </div>
         <div className="flex items-center space-x-4">
-          <button className="px-3 py-1.5 border border-zinc-700 rounded-md text-sm flex items-center hover:bg-zinc-800">
+          <button className="px-3 py-1.5 border border-gray-300 rounded-md text-sm flex items-center hover:bg-gray-100">
             <Bookmark className="w-4 h-4 mr-2" />
             Saved Jobs
           </button>
@@ -146,11 +146,11 @@ export default function Jobs() {
       {/* Search and Filters */}
       <div className="flex flex-col md:flex-row gap-4 mb-8">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-zinc-500" />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500" />
           <input
             type="text"
             placeholder="Search jobs, companies, or skills..."
-            className="w-full pl-10 py-2 bg-zinc-800 border border-zinc-700 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500"
+            className="w-full pl-10 py-2 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
@@ -158,7 +158,7 @@ export default function Jobs() {
         
         <div className="relative w-full md:w-40">
           <select 
-            className="w-full py-2 px-3 bg-zinc-800 border border-zinc-700 rounded-md appearance-none focus:outline-none focus:ring-1 focus:ring-purple-500"
+            className="w-full py-2 px-3 bg-gray-50 border border-gray-200 rounded-md appearance-none focus:outline-none focus:ring-1 focus:ring-purple-500"
             value={selectedType}
             onChange={(e) => setSelectedType(e.target.value)}
           >
@@ -168,13 +168,13 @@ export default function Jobs() {
             <option value="part-time">Part-time</option>
           </select>
           <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
-            <Filter className="w-4 h-4 text-zinc-500" />
+            <Filter className="w-4 h-4 text-gray-500" />
           </div>
         </div>
         
         <div className="relative w-full md:w-40">
           <select 
-            className="w-full py-2 px-3 bg-zinc-800 border border-zinc-700 rounded-md appearance-none focus:outline-none focus:ring-1 focus:ring-purple-500"
+            className="w-full py-2 px-3 bg-gray-50 border border-gray-200 rounded-md appearance-none focus:outline-none focus:ring-1 focus:ring-purple-500"
             value={selectedLocation}
             onChange={(e) => setSelectedLocation(e.target.value)}
           >
@@ -185,7 +185,7 @@ export default function Jobs() {
             <option value="washington">Washington</option>
           </select>
           <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
-            <Filter className="w-4 h-4 text-zinc-500" />
+            <Filter className="w-4 h-4 text-gray-500" />
           </div>
         </div>
       </div>
@@ -195,21 +195,21 @@ export default function Jobs() {
         <h2 className="text-xl font-semibold mb-4">Featured Jobs</h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {filteredJobs.filter(job => job.featured).map((job) => (
-            <div key={job.id} className="bg-zinc-800/50 backdrop-blur-sm border border-zinc-700 rounded-lg hover:translate-y-[-4px] transition-all duration-300 animate-fade-in">
+            <div key={job.id} className="bg-white/80 backdrop-blur-sm border border-gray-200 rounded-lg hover:translate-y-[-4px] transition-all duration-300 animate-fade-in">
               <div className="p-6">
                 <div className="flex items-start justify-between">
                   <div className="flex items-center space-x-3">
-                    <div className="w-12 h-12 rounded-full overflow-hidden bg-zinc-700">
+                    <div className="w-12 h-12 rounded-full overflow-hidden bg-gray-100">
                       <img src={job.logo} alt={job.company} className="w-full h-full object-cover" />
                     </div>
                     <div>
                       <h3 className="text-lg font-medium">{job.title}</h3>
-                      <p className="text-zinc-400">{job.company}</p>
+                      <p className="text-gray-500">{job.company}</p>
                     </div>
                   </div>
                   <button
                     onClick={() => handleBookmark(job.id)}
-                    className={`p-2 rounded-full hover:bg-zinc-700 ${job.isBookmarked ? "text-purple-500" : ""}`}
+                    className={`p-2 rounded-full hover:bg-gray-100 ${job.isBookmarked ? "text-purple-500" : ""}`}
                   >
                     <Bookmark className={`w-4 h-4 ${job.isBookmarked ? "fill-current" : ""}`} />
                   </button>
@@ -217,22 +217,22 @@ export default function Jobs() {
               </div>
               
               <div className="px-6 pb-6 space-y-4">
-                <p className="text-sm text-zinc-400">{job.description}</p>
+                <p className="text-sm text-gray-500">{job.description}</p>
                 
                 <div className="flex flex-wrap gap-2">
                   {job.skills.slice(0, 4).map((skill, index) => (
-                    <span key={index} className="px-2 py-1 text-xs border border-zinc-600 rounded-full">
+                    <span key={index} className="px-2 py-1 text-xs border border-gray-300 rounded-full">
                       {skill}
                     </span>
                   ))}
                   {job.skills.length > 4 && (
-                    <span className="px-2 py-1 text-xs border border-zinc-600 rounded-full">
+                    <span className="px-2 py-1 text-xs border border-gray-300 rounded-full">
                       +{job.skills.length - 4} more
                     </span>
                   )}
                 </div>
                 
-                <div className="flex items-center justify-between text-sm text-zinc-400">
+                <div className="flex items-center justify-between text-sm text-gray-500">
                   <div className="flex items-center space-x-4">
                     <div className="flex items-center">
                       <MapPin className="w-4 h-4 mr-1" />
@@ -250,13 +250,13 @@ export default function Jobs() {
                 </div>
                 
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center text-sm text-zinc-400">
+                  <div className="flex items-center text-sm text-gray-500">
                     <Users className="w-4 h-4 mr-1" />
                     {job.applicants} applicants
                   </div>
                   <div className="flex space-x-2">
                     <button 
-                      className="px-3 py-1.5 border border-zinc-700 rounded-md text-sm flex items-center hover:bg-zinc-700"
+                      className="px-3 py-1.5 border border-gray-300 rounded-md text-sm flex items-center hover:bg-gray-100"
                       onClick={() => handleJobClick(job)}
                     >
                       <ExternalLink className="w-4 h-4 mr-2" />
@@ -281,22 +281,22 @@ export default function Jobs() {
         <h2 className="text-xl font-semibold mb-4">All Jobs</h2>
         <div className="space-y-4">
           {filteredJobs.map((job) => (
-            <div key={job.id} className="bg-zinc-800/50 backdrop-blur-sm border border-zinc-700 rounded-lg hover:translate-y-[-4px] transition-all duration-300 animate-fade-in">
+            <div key={job.id} className="bg-white/80 backdrop-blur-sm border border-gray-200 rounded-lg hover:translate-y-[-4px] transition-all duration-300 animate-fade-in">
               <div className="p-6">
                 <div className="flex items-start justify-between">
                   <div className="flex items-center space-x-4 flex-1">
-                    <div className="w-12 h-12 rounded-full overflow-hidden bg-zinc-700">
+                    <div className="w-12 h-12 rounded-full overflow-hidden bg-gray-100">
                       <img src={job.logo} alt={job.company} className="w-full h-full object-cover" />
                     </div>
                     
                     <div className="flex-1">
                       <div className="flex items-center space-x-2 mb-1">
                         <h3 className="font-semibold text-lg">{job.title}</h3>
-                        {job.remote && <span className="px-2 py-0.5 bg-zinc-700 text-xs rounded-full">Remote</span>}
+                        {job.remote && <span className="px-2 py-0.5 bg-gray-200 text-xs rounded-full">Remote</span>}
                       </div>
-                      <p className="text-zinc-400 mb-2">{job.company}</p>
+                      <p className="text-gray-500 mb-2">{job.company}</p>
                       
-                      <div className="flex items-center space-x-4 text-sm text-zinc-400 mb-3">
+                      <div className="flex items-center space-x-4 text-sm text-gray-500 mb-3">
                         <div className="flex items-center">
                           <MapPin className="w-4 h-4 mr-1" />
                           {job.location}
@@ -313,7 +313,7 @@ export default function Jobs() {
                       
                       <div className="flex flex-wrap gap-2">
                         {job.skills.slice(0, 5).map((skill, index) => (
-                          <span key={index} className="px-2 py-1 text-xs border border-zinc-600 rounded-full">
+                          <span key={index} className="px-2 py-1 text-xs border border-gray-300 rounded-full">
                             {skill}
                           </span>
                         ))}
@@ -324,19 +324,19 @@ export default function Jobs() {
                   <div className="flex flex-col items-end space-y-2">
                     <button
                       onClick={() => handleBookmark(job.id)}
-                      className={`p-2 rounded-full hover:bg-zinc-700 ${job.isBookmarked ? "text-purple-500" : ""}`}
+                      className={`p-2 rounded-full hover:bg-gray-100 ${job.isBookmarked ? "text-purple-500" : ""}`}
                     >
                       <Bookmark className={`w-4 h-4 ${job.isBookmarked ? "fill-current" : ""}`} />
                     </button>
                     
-                    <div className="text-xs text-zinc-400 text-right">
+                    <div className="text-xs text-gray-500 text-right">
                       <p>Posted {job.posted}</p>
                       <p>{job.applicants} applicants</p>
                     </div>
                     
                     <div className="flex space-x-2">
                       <button 
-                        className="px-3 py-1.5 border border-zinc-700 rounded-md text-sm hover:bg-zinc-700"
+                        className="px-3 py-1.5 border border-gray-300 rounded-md text-sm hover:bg-gray-100"
                         onClick={() => handleJobClick(job)}
                       >
                         View Details
@@ -359,21 +359,21 @@ export default function Jobs() {
       {/* Job Detail Modal */}
       {isModalOpen && selectedJob && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-zinc-800 border border-zinc-700 rounded-lg w-full max-w-3xl max-h-[90vh] overflow-y-auto">
+          <div className="bg-white border border-gray-200 rounded-lg w-full max-w-3xl max-h-[90vh] overflow-y-auto">
             <div className="p-6">
               <div className="flex justify-between items-start mb-6">
                 <div className="flex items-center space-x-4">
-                  <div className="w-16 h-16 rounded-full overflow-hidden bg-zinc-700">
+                  <div className="w-16 h-16 rounded-full overflow-hidden bg-gray-100">
                     <img src={selectedJob.logo} alt={selectedJob.company} className="w-full h-full object-cover" />
                   </div>
                   <div>
                     <h2 className="text-2xl font-bold">{selectedJob.title}</h2>
-                    <p className="text-zinc-400">{selectedJob.company}</p>
+                    <p className="text-gray-500">{selectedJob.company}</p>
                   </div>
                 </div>
                 <button 
                   onClick={() => setIsModalOpen(false)}
-                  className="p-2 hover:bg-zinc-700 rounded-full"
+                  className="p-2 hover:bg-gray-100 rounded-full"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -386,22 +386,22 @@ export default function Jobs() {
                 <div className="flex items-center">
                   <MapPin className="w-5 h-5 mr-2 text-purple-500" />
                   <div>
-                    <p className="text-sm text-zinc-400">Location</p>
+                    <p className="text-sm text-gray-500">Location</p>
                     <p>{selectedJob.location}</p>
-                    {selectedJob.remote && <span className="text-xs bg-zinc-700 px-2 py-0.5 rounded-full">Remote</span>}
+                    {selectedJob.remote && <span className="text-xs bg-gray-200 px-2 py-0.5 rounded-full">Remote</span>}
                   </div>
                 </div>
                 <div className="flex items-center">
                   <Clock className="w-5 h-5 mr-2 text-purple-500" />
                   <div>
-                    <p className="text-sm text-zinc-400">Job Type</p>
+                    <p className="text-sm text-gray-500">Job Type</p>
                     <p>{selectedJob.type}</p>
                   </div>
                 </div>
                 <div className="flex items-center">
                   <DollarSign className="w-5 h-5 mr-2 text-purple-500" />
                   <div>
-                    <p className="text-sm text-zinc-400">Salary</p>
+                    <p className="text-sm text-gray-500">Salary</p>
                     <p>{selectedJob.salary}</p>
                   </div>
                 </div>
@@ -410,12 +410,12 @@ export default function Jobs() {
               <div className="space-y-6">
                 <div>
                   <h3 className="text-lg font-semibold mb-2">Description</h3>
-                  <p className="text-zinc-300">{selectedJob.description}</p>
+                  <p className="text-gray-700">{selectedJob.description}</p>
                 </div>
                 
                 <div>
                   <h3 className="text-lg font-semibold mb-2">Requirements</h3>
-                  <ul className="list-disc pl-5 space-y-1 text-zinc-300">
+                  <ul className="list-disc pl-5 space-y-1 text-gray-700">
                     {selectedJob.requirements.map((req, index) => (
                       <li key={index}>{req}</li>
                     ))}
@@ -426,7 +426,7 @@ export default function Jobs() {
                   <h3 className="text-lg font-semibold mb-2">Skills</h3>
                   <div className="flex flex-wrap gap-2">
                     {selectedJob.skills.map((skill, index) => (
-                      <span key={index} className="px-3 py-1 bg-zinc-700 rounded-full text-sm">
+                      <span key={index} className="px-3 py-1 bg-gray-100 rounded-full text-sm">
                         {skill}
                       </span>
                     ))}
@@ -437,7 +437,7 @@ export default function Jobs() {
               <div className="flex justify-between items-center mt-8">
                 <button
                   onClick={() => handleBookmark(selectedJob.id)}
-                  className="flex items-center px-4 py-2 border border-zinc-600 rounded-md hover:bg-zinc-700"
+                  className="flex items-center px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-100"
                 >
                   <Bookmark className={`w-4 h-4 mr-2 ${selectedJob.isBookmarked ? "fill-current text-purple-500" : ""}`} />
                   {selectedJob.isBookmarked ? "Saved" : "Save Job"}
