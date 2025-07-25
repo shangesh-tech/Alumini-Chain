@@ -126,7 +126,7 @@ export default function Home() {
       </div>
 
       {/* Create Post */}
-      <div className="bg-white/80 backdrop-blur-sm rounded-lg border border-gray-200 shadow-lg mb-8">
+      <div className="bg-white/80 rounded-lg border border-gray-200 shadow-lg shadow-purple-500/30 mb-8 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
         <div className="p-6">
           <div className="flex items-start space-x-4">
             <div className="w-12 h-12 rounded-full overflow-hidden">
