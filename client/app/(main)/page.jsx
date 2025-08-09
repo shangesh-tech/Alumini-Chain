@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSession } from 'next-auth/react';
 import PostDetailModal from "@/components/modals/PostDetailModal";
 import { 
   Heart, 
@@ -13,102 +14,118 @@ import {
   Link
 } from "lucide-react";
 
-const posts = [
-  {
-    id: 1,
-    author: "Sarah Johnson",
-    avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=32&h=32&fit=crop&crop=face",
-    title: "Senior Product Manager",
-    company: "Microsoft",
-    timestamp: "2h ago",
-    content: "Just wrapped up an amazing presentation on Web3 product strategy. The future of decentralized applications is so bright! 🚀\n\nKey takeaways:\n• User experience is still the most important factor\n• Scalability solutions are rapidly improving\n• Community governance is becoming mainstream\n\nWhat are your thoughts on the current state of Web3 UX?",
-    tags: ["Web3", "Product", "UX", "Strategy"],
-    likes: 127,
-    comments: 23,
-    shares: 12,
-    isLiked: false,
-    isBookmarked: true,
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=300&fit=crop"
-  },
-  {
-    id: 2,
-    author: "Michael Chen",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=32&h=32&fit=crop&crop=face",
-    title: "Blockchain Developer",
-    company: "ConsenSys",
-    timestamp: "4h ago",
-    content: "Big milestone achieved! 🎉 Our smart contract audit is complete with zero critical vulnerabilities found. \n\nSpecial thanks to the amazing team at OpenZeppelin for their thorough review. Security first, always! 🔒\n\n#SmartContracts #Security #Ethereum",
-    tags: ["Blockchain", "Security", "Ethereum", "Smart Contracts"],
-    likes: 89,
-    comments: 15,
-    shares: 8,
-    isLiked: true,
-    isBookmarked: false
-  },
-  {
-    id: 3,
-    author: "Emily Rodriguez",
-    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face",
-    title: "Marketing Director",
-    company: "Spotify",
-    timestamp: "6h ago",
-    content: "Exciting news! 📢 We're launching our new alumni mentorship program next month. \n\nThis program will connect recent graduates with experienced professionals in their field. Looking for both mentors and mentees!\n\nInterested? Drop a comment below or send me a DM. Let's grow together! 🌱",
-    tags: ["Mentorship", "Career", "Networking", "Growth"],
-    likes: 156,
-    comments: 34,
-    shares: 19,
-    isLiked: false,
-    isBookmarked: true
-  },
-  {
-    id: 4,
-    author: "David Park",
-    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face",
-    title: "Data Scientist",
-    company: "Tesla",
-    timestamp: "8h ago",
-    content: "Mind-blowing AI research paper just dropped! 🤖\n\n\"Attention Is All You Need\" revolutionized NLP, and now we're seeing similar breakthroughs in computer vision. The transformer architecture continues to amaze.\n\nLink to the paper in comments. What's your favorite recent ML breakthrough?",
-    tags: ["AI", "MachineLearning", "Research", "Innovation"],
-    likes: 78,
-    comments: 12,
-    shares: 6,
-    isLiked: true,
-    isBookmarked: false
-  }
-];
-
 export default function Home() {
+  const { data: session, status } = useSession(); // Added for auth check
   const [newPost, setNewPost] = useState("");
-  const [feedPosts, setFeedPosts] = useState(posts);
+  const [feedPosts, setFeedPosts] = useState([]);
   const [selectedPost, setSelectedPost] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [posting, setPosting] = useState(false);
+  const [postError, setPostError] = useState(null); // Added missing state
 
-  const handleLike = (postId) => {
-    setFeedPosts(prev => 
-      prev.map(post => 
-        post.id === postId 
-          ? { 
-              ...post, 
-              isLiked: !post.isLiked, 
-              likes: post.isLiked ? post.likes - 1 : post.likes + 1 
-            }
-          : post
-      )
-    );
+  // Fetch posts from backend on mount
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await fetch('/api/posts');
+        if (!response.ok) throw new Error('Failed to fetch posts');
+        const data = await response.json();
+        setFeedPosts(data);
+      } catch (error) {
+        console.error('Error fetching posts:', error);
+        // Optional: Show error UI
+      }
+    };
+    fetchPosts();
+  }, []);
+
+  // Function to handle post submission with user ID
+  const handleCreatePost = async () => {
+    if (!newPost.trim()) return;
+    if (!session?.user?.id) {
+      setPostError("User ID not available. Please log in again.");
+      return;
+    }
+
+    setPosting(true);
+    setPostError(null);
+
+    try {
+      const response = await fetch('/api/posts', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          content: newPost,
+          userId: session.user.id, // Include authenticated user ID
+        }),
+      });
+
+      if (response.ok) {
+        setNewPost(""); // Clear input on success
+        console.log("Post created successfully");
+        // Refresh posts after creation
+        const fetchPosts = async () => {
+          const response = await fetch('/api/posts');
+          if (response.ok) {
+            const data = await response.json();
+            setFeedPosts(data);
+          }
+        };
+        fetchPosts();
+      } else {
+        setPostError("Failed to create post");
+      }
+    } catch (err) {
+      setPostError("Error creating post");
+    } finally {
+      setPosting(false);
+    }
   };
 
-  const handleBookmark = (postId) => {
-    setFeedPosts(prev => 
-      prev.map(post => 
-        post.id === postId 
-          ? { ...post, isBookmarked: !post.isBookmarked }
-          : post
-      )
-    );
+  const handleLike = async (postId) => {
+    try {
+      const response = await fetch('/api/posts', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ postId, action: 'like' }),
+      });
+      if (!response.ok) throw new Error('Failed to update like');
+      const updatedPost = await response.json();
+
+      // Update local state
+      setFeedPosts(prev =>
+        prev.map(post =>
+          post.id === postId ? updatedPost : post
+        )
+      );
+    } catch (error) {
+      console.error('Error liking post:', error);
+    }
+  };
+
+  const handleBookmark = async (postId) => {
+    try {
+      const response = await fetch('/api/posts', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ postId, action: 'bookmark' }),
+      });
+      if (!response.ok) throw new Error('Failed to update bookmark');
+      const updatedPost = await response.json();
+
+      // Update local state
+      setFeedPosts(prev =>
+        prev.map(post =>
+          post.id === postId ? updatedPost : post
+        )
+      );
+    } catch (error) {
+      console.error('Error bookmarking post:', error);
+    }
   };
 
   const handleShare = (postId) => {
-    // Handle share logic
+    // Handle share logic (e.g., copy link or social share)
     console.log("Sharing post:", postId);
   };
 
@@ -116,6 +133,10 @@ export default function Home() {
     setSelectedPost(post);
     setIsModalOpen(true);
   };
+
+  if (status === 'loading') {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="container mx-auto px-3">
@@ -131,7 +152,7 @@ export default function Home() {
           <div className="flex items-start space-x-4">
             <div className="w-12 h-12 rounded-full overflow-hidden">
               <img 
-                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=48&h=48&fit=crop&crop=face"
+                src="https://avatar.iran.liara.run/public/9"
                 alt="User"
                 className="w-full h-full object-cover"
               />
@@ -155,15 +176,17 @@ export default function Home() {
                   </button>
                 </div>
                 <button 
+                  onClick={handleCreatePost}
+                  disabled={posting || !newPost.trim()}
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors
-                    ${newPost.trim() 
+                    ${newPost.trim() && !posting 
                       ? 'bg-purple-600 hover:bg-purple-700 text-white' 
                       : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`}
-                  disabled={!newPost.trim()}
                 >
-                  Post
+                  {posting ? "Posting..." : "Post"}
                 </button>
               </div>
+              {postError && <p className="text-red-600 text-sm">{postError}</p>}
             </div>
           </div>
         </div>
@@ -172,7 +195,7 @@ export default function Home() {
       {/* Feed Posts */}
       <div className="space-y-6">
         {feedPosts.map((post) => (
-          <div key={post.id} className="bg-white/80 backdrop-blur-sm rounded-lg border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+          <div key={post._id} className="bg-white/80 backdrop-blur-sm rounded-lg border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
             <div className="p-6">
               <div className="flex items-start justify-between">
                 <div 
@@ -180,11 +203,11 @@ export default function Home() {
                   onClick={() => handlePostClick(post)}
                 >
                   <div className="w-12 h-12 rounded-full overflow-hidden">
-                    <img src={post.avatar} alt={post.author} className="w-full h-full object-cover" />
+                    <img src={post.avatar || "https://avatar.iran.liara.run/public/9"} alt={post.author} className="w-full h-full object-cover" />
                   </div>
                   <div>
                     <h3 className="font-semibold hover:text-purple-400 transition-colors">{post.author}</h3>
-                    <p className="text-sm text-gray-600">{post.title} at {post.company}</p>
+                    <p className="text-sm text-gray-600">{post.title}</p>
                     <p className="text-xs text-gray-500">{post.timestamp}</p>
                   </div>
                 </div>
