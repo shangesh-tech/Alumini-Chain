@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
@@ -24,11 +25,28 @@ const SignIn = () => {
         setLoading(true);
         setError('');
 
-        alert('This is a demo login form. Please use the social login options below.');
+        try {
+            const result = await signIn('credentials', {
+                email: formData.email,
+                password: formData.password,
+                remember: formData.remember.toString(),
+                redirect: false,
+            });
+
+            if (result.error) {
+                setError("Invalid email or password");
+            } else {
+                router.push('/');
+            }
+        } catch (error) {
+            setError('An error occurred during sign in');
+        } finally {
+            setLoading(false);
+        }
     };
 
     const handleSocialLogin = (provider) => {
-        alert(`This is a demo login form. Social login with ${provider} is not implemented.`);
+        signIn(provider, { callbackUrl: '/' });
     };
 
     return (

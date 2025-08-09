@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { signIn } from 'next-auth/react';
+import axios from 'axios';
 import Link from 'next/link';
 
 const SignUp = () => {
@@ -26,11 +28,32 @@ const SignUp = () => {
         setLoading(true);
         setError('');
 
-        alert('This is a demo signup form. The backend API is not implemented.');
+        if (formData.password !== formData.confirmPassword) {
+            setError('Passwords do not match');
+            setLoading(false);
+            return;
+        }
+
+        try {
+            const response = await axios.post('/api/auth/register', {
+                firstName: formData.firstName,
+                lastName: formData.lastName,
+                email: formData.email,
+                password: formData.password,
+                gender: formData.gender,
+            });
+            console.log(response);
+
+            router.push('/login');
+        } catch (error) {
+            setError(error.response?.data?.message || 'Something went wrong');
+        } finally {
+            setLoading(false);
+        }
     };
 
     const handleSocialLogin = (provider) => {
-        alert(`This is a demo signup form. Social login with ${provider} is not implemented.`);
+        signIn(provider, { callbackUrl: '/' });
     };
 
     return (

@@ -20,7 +20,15 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <SessionProvider>
+        <Toaster
+          position="top-center"
+          toastOptions={{
+            className: "bg-gray-800 text-white"
+          }}
+        />
         {children}
+        </SessionProvider>
       </body>
     </html>
   );
