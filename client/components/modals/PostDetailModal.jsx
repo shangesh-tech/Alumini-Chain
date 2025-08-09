@@ -98,9 +98,7 @@ export default function PostDetailModal({ post, open, onOpenChange, onLike, onBo
                 <p className="text-xs text-gray-500">{post.timestamp}</p>
               </div>
             </div>
-            <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-              <MoreHorizontal className="w-4 h-4 text-gray-500" />
-            </button>
+           
           </div>
         </div>
 
