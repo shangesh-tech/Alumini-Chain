@@ -108,7 +108,7 @@ export default function ChatPage() {
   }, [chatClient, isClientReady, session?.user?.id, recipientId, initChat]);
 
   // Sidebar navigation
-  const handleUserClick = userId => router.push(`/chat/${userId}`);
+  const handleUserClick = userId => router.push(`/messages/${userId}`);
 
   // Filter users by name/email
   const filteredUsers = users.filter(
